@@ -17,7 +17,7 @@ const SurveyQuestion = new Schema({
 });
 
 const SurveyResponse = new Schema({
-  answers: { type: [Schema.Type.Mixed] },
+  answers: [Schema.Type.Mixed],
   date: { type: Date, required: true },
 });
 
@@ -27,6 +27,7 @@ const SurveySchema = new Schema({
     required: true,
     maxLength: 50,
   },
+  creationDate: { type: Date, required: true },
   questions: [SurveyQuestion],
   responses: [SurveyResponse],
 });
