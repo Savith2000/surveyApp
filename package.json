@@ -1,0 +1,25 @@
+{
+  "name": "surveyApp",
+  "version": "1.0.0",
+  "description": "This app allows users to create and fill out surveys.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Savith2000/surveyApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Savith2000/surveyApp/issues"
+  },
+  "homepage": "https://github.com/Savith2000/surveyApp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3"
+  }
+}
