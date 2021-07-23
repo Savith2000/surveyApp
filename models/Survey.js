@@ -25,7 +25,7 @@ const SurveySchema = new Schema({
                         }
                       return valid;
                     },
-                    "Password should be longer."
+                    "Must enter a valid question type"
                   ]
             }
         }
