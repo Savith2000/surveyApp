@@ -10,7 +10,7 @@ const SurveyQuestion = new Schema({
     type: String,
     required: "Response type required",
     validate: {
-      validator: (type) => type in ALLOWEDTYPES,
+      validator: (type) => ALLOWEDTYPES.includes(type),
       message: "Valid types are: text, number, rating",
     },
   },
