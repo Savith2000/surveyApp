@@ -1,42 +1,18 @@
 const db = require("../models/Survey");
 
 module.exports = {
-  findAllSurveys: function (req, res) {
-    db.find({})
-      .then(function (dbArticle) {
-        res.json(dbArticle);
-      })
-      .catch(function (err) {
-        res.json(err);
-      });
+  findAllSurveys: function () {
+    return db.find({});
   },
 
-  findSurveyById: function (id, res) {
-    db.findById(id)
-      .then(function (survey) {
-        res.json(survey);
-      })
-      .catch(function (err) {
-        res.json(err);
-      });
+  findSurveyById: function (id) {
+    return db.findById(id);
   },
 
   createSurvey: function (survey) {
-    db.create(survey)
-      .then(function (x) {
-        console.log(x);
-      })
-      .catch(function (err) {
-        return console.log(err);
-      });
+    return db.create(survey);
   },
   addResponseToSurvey: function (surveyId, Response) {
-    db.findByIdAndUpdate(surveyId, { $push: { responses: Response } })
-      .then(function (x) {
-        console.log(x);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+    return db.findByIdAndUpdate(surveyId, { $push: { responses: Response } });
   },
 };
