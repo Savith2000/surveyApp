@@ -11,7 +11,7 @@ module.exports = function (app) {
         const demoReq = {
             responses: [
                 {
-                    input: "Response to a question",
+                    input: "6",
                 }
                 // etc...
             ]
@@ -22,8 +22,8 @@ module.exports = function (app) {
             creationDate: "7/23/21",
             questions: [
                 {
-                    question: "What is your avourite Color?",
-                    responseType: "text"
+                    question: "What is your favourite Color?",
+                    responseType: "rating"
                 }
                 // etc...
             ]
@@ -32,7 +32,7 @@ module.exports = function (app) {
         const qs = demoSurvey.questions;
         const ans = demoReq.responses;
         let valid = true;
-        if (qs.length !== rs.length) {
+        if (qs.length !== ans.length) {
             valid = false;
         }
         // Validate based on Type
@@ -53,7 +53,7 @@ module.exports = function (app) {
                 }
                 break;
                 case "rating":
-                if (a.input.match(ratingRgx)) {
+                if (a.input.match(ratingRgx) || a.input.length !== 1) {
                     valid = false;
                 }
                 break;
