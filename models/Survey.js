@@ -16,11 +16,6 @@ const SurveyQuestion = new Schema({
   },
 });
 
-const SurveyResponse = new Schema({
-  answers: [Schema.Types.Mixed],
-  date: { type: Date, default: Date.now },
-});
-
 const SurveySchema = new Schema({
   title: {
     type: String,
@@ -30,7 +25,10 @@ const SurveySchema = new Schema({
   },
   creationDate: { type: Date, default: Date.now },
   questions: [SurveyQuestion],
-  responses: [SurveyResponse],
+  responses: {
+    type: Schema.Types.ObjectId,
+    ref: "ResponseList",
+  },
 });
 
 const SurveyModel = mongoose.model("Survey", SurveySchema);
