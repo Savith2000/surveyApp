@@ -1,42 +1,28 @@
 const Survey = require("../models/Survey");
-const surveyController = require("../controllers/surveyController");
+const controller = require("../controllers/surveyController");
 
 module.exports = function (app) {
     app.post("/createSurvey", function(req, res) {
-        /* Post to survey controller: create survey */
+        controller.createSurvey(req.body).then(() => {
+            res.json({error: false, msg: "Your survey was successfully submitted! (!! Send link too !!)"});
+        }
+        ).catch((err) => {
+            res.json({error: true, msg: err});
+        })
     });
 
     app.post("/submitSurvey/:id", function(req, res) {
-        // Demo req
-        const demoReq = {
-            responses: [
-                {
-                    input: "6",
-                }
-                // etc...
-            ]
-        }
         // Get Corresponding Survey (Will be replaced by finding in db using req.params.id once controllers done):
-        const demoSurvey = {
-            title: "Demo Survey (No DB Controllers made yet)",
-            creationDate: "7/23/21",
-            questions: [
-                {
-                    question: "What is your favourite Color?",
-                    responseType: "rating"
-                }
-                // etc...
-            ]
-        }
-        // Validate Length
-        const qs = demoSurvey.questions;
-        const ans = demoReq.responses;
+        controller.findSurveyById(req.params.id).then((survey) => {
+            // Validate Length
+        const qs = survey.questions;
+        const ans = req.body.responses;
         let valid = true;
         if (qs.length !== ans.length) {
             valid = false;
         }
         // Validate based on Type
-        let textRgx = /([^A-z0-9\s])+/g;
+        let textRgx = /([^A-z0-9\s'-.,])+/g;
         let numRgx = /([^0-9])+/g;
         let ratingRgx = /([^1-5])+/g;
         ans.forEach((a, i) => {
@@ -60,9 +46,23 @@ module.exports = function (app) {
             }
         });
         if (!valid) {
-            res.send("Could not process invalid request");
+            res.json({
+                error: true, 
+                msg: "Please fill out all fields correctly"
+            });
         } else {
-            /* Submit to survey submission controller */
+            controller.addResponseToSurvey(req.params.id, ans).then(() => {
+                res.json({error: false, msg: "Your response was successfully submitted!"});
+            }
+            ).catch((err) => {
+                res.json({
+                    error: true, 
+                    msg: err
+                });
+            });
         }
+        }).catch((err) => {
+            res.json({error: true, msg: err});
+        })
     });
 }
