@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-    "mongodb+srv://user:user@cluster0.ghjok.mongodb.net/gooseController?retryWrites=true&w=majority",
+    DB_STRING,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

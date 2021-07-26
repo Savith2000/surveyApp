@@ -9,9 +9,10 @@ module.exports = function (app) {
     })
 
     app.get("/survey/:id", function (req, res) {
+        console.log(controller.findSurveyById(req.params.id));
         controller.findSurveyById(req.params.id).then((survey) => {
             let questions = "";
-            let metrics = "<table class='survey-metrics'><thead><tr>";
+            let metricsH = "<table class='survey-metrics'><thead><tr>";
             survey.questions.forEach((q, i) => {
                 let input;
                 input = `<label for="${i}>${q.question}</label>"`;
@@ -27,17 +28,9 @@ module.exports = function (app) {
                     break;
                 }
                 questions += input;
-                metrics += `<th>${q.question}</th>`;
+                metricsH += `<th>${q.question}</th>`;
             });
-            metrics += `</tr></thead>`;
-            survey.responses.forEach((response, i) => {
-                metrics += `<tr>`;
-                response.forEach((answer) => {
-                    metrics += `<td>${answer}</td>`;
-                });
-                metrics += `</tr>`;
-            });
-            metrics += `</thead>`;
+            metricsH += `</tr></thead><table>`;
             let form;
             fs.readFile("../public/survey.js", "utf8", function(error, js) {
             form = `
@@ -58,8 +51,8 @@ module.exports = function (app) {
     </form>
     <div id="alerts"></div>
     <data>
-        <summary>View Survey Response Metrics</summary>
-    ${metrics}
+        <summary data-id="${survey._id}">View Survey Response Metrics</summary>
+        ${metricsH}
     </data>
     ${js}
 </body>
@@ -68,5 +61,17 @@ module.exports = function (app) {
             });
             res.send(form);
         });
+    });
+
+    app.get("/metrics/:id", function (req, res) {
+        controller.findSurveyById(req.params.id).then((survey) => {
+        survey.responses.forEach((response, i) => {
+            metrics += `<tr>`;
+            response.forEach((answer) => {
+                metrics += `<td>${answer}</td>`;
+            });
+            metrics += `</tr>`;
+        });
+        metrics += `</thead>`;
     });
 }
