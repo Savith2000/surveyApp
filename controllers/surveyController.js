@@ -11,10 +11,13 @@ module.exports = {
       return db.Survey.create(survey);
     }),
 
-  getSurveyResponseListById: (id) =>
+  getResponseListBySurveyId: (id) =>
     db.Survey.findById(id).then((survey) =>
-      db.ResponseList.findById(survey.responses)
+      this.getResponseListByResponseListId(survey.responses)
     ),
+
+  getResponseListByResponseListId: (id) =>
+    db.ResponseList.findById(survey.responses),
 
   addResponseToSurveyBySurveyId: (surveyId, response) => {
     incrementSurveyResponseCounter(surveyId);
@@ -30,5 +33,5 @@ module.exports = {
     }),
 
   incrementSurveyResponseCounter: (surveyId) =>
-    db.survey.findByIdAndUpdate(surveyId, { $inc: { responseAmount: 1 } }),
+    db.Survey.findByIdAndUpdate(surveyId, { $inc: { responseAmount: 1 } }),
 };
