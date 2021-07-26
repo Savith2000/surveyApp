@@ -12,11 +12,11 @@ module.exports = {
     }),
 
   addResponseToSurveyBySurveyId: (surveyId, response) =>
-    db
-      .findById(surveyId)
-      .then((survey) =>
-        this.addResponseToSurveyByResponseListId(survey.responses._id, response)
-      ),
+    db.Survey.findById(surveyId).then((survey) =>
+      this.addResponseToSurveyByResponseListId(survey.responses._id, response)
+    ),
   addResponseToSurveyByResponseListId: (responseListId, response) =>
-    db.findByIdAndUpdate(responseListId, { $push: { responses: response } }),
+    db.ResponseList.findByIdAndUpdate(responseListId, {
+      $push: { responses: response },
+    }),
 };
