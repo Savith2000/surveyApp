@@ -1,11 +1,22 @@
-const db = require("../models/Survey");
+const db = require("../models");
 
 module.exports = {
-  findAllSurveys: () => db.find({}),
+  findAllSurveys: () => db.Survey.find({}),
 
-  findSurveyById: id => db.findById(id),
+  findSurveyById: (id) => db.Survey.findById(id),
 
-  createSurvey: survey => db.create(survey),
+  createSurvey: (survey) =>
+    db.ResponseList.create([]).then((responseList) => {
+      survey.responses = responseList._id;
+      return db.Survey.create(survey);
+    }),
 
-  addResponseToSurvey: (surveyId, response) => db.findByIdAndUpdate(surveyId, { $push: { responses: response } })
+  addResponseToSurveyBySurveyId: (surveyId, response) =>
+    db
+      .findById(surveyId)
+      .then((survey) =>
+        this.addResponseToSurveyByResponseListId(survey.responses._id, response)
+      ),
+  addResponseToSurveyByResponseListId: (responseListId, response) =>
+    db.findByIdAndUpdate(responseListId, { $push: { responses: response } }),
 };
