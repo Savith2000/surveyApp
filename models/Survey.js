@@ -17,17 +17,18 @@ const SurveyQuestion = new Schema({
 });
 
 const SurveyResponse = new Schema({
-  answers: [Schema.Type.Mixed],
-  date: { type: Date, required: true },
+  answers: [Schema.Types.Mixed],
+  date: { type: Date, default: Date.now },
 });
 
 const SurveySchema = new Schema({
   title: {
     type: String,
-    required: true,
+    match: [/([^A-z0-9\s])+/g, "Special characters are not allowed"],
+    required: "Survey title required",
     maxLength: 50,
   },
-  creationDate: { type: Date, required: true },
+  creationDate: { type: Date, default: Date.now },
   questions: [SurveyQuestion],
   responses: [SurveyResponse],
 });
