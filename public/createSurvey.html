@@ -79,21 +79,26 @@
                 <div class="card" class="card" id="body-card" style="margin-top: 2%;margin-left: 10%;margin-right: 10%; background-color:#BCD2E8;">
                     <div class="card-body" >
                         <div class="row g-2">
+                            <button type="button" id="button" class="btn btn-primary btn-large" style="width:80%;margin-top: 2%;margin-left: 10%;">Please Click Here For New Question</button>
                         
                       
                         
                             <div class="col-md-12" >
                                 <div class="card" style="background-color: #91BAD6 ;margin: 2%;">
                                     <div class="card-body" >
-                                    <h1 style="color: white;">Question</h1>
+                                        <label class="form-label" style="font-size:30px;color: white;">What Type Of Question?</label>
+                                        <input placeholder="e.g. Rating,Input,Number" style="width: 100%;"></input>
+                                    <label class="form-label" style="font-size:30px;color: white;">Question</label>
                                      <input placeholder="Please Type In Question" style="width: 100%;"></input>
-                                     <button type="button" id="button" class="btn btn-primary btn-large" style="margin-top: 2%;">Please Click Here For New Question</button>
+                                    
+                                     
                                     </div>
                                   </div>
                                 </div> 
                                 
                                       </div>
                                     </div> 
+                                    
                                 
                                     
                             </div>
@@ -103,7 +108,7 @@
       
     <script type="text/javascript">
         $("#button").on("click", function(event) {
-            $("#body-card").append("<div class='card-body'><div class='col-md-12'><div class='card' style='background-color:#91BAD6;margin:2%;'><div class='card-body'><h1 style='color:white;'>Question</h1><input placeholder='Please Type In Question' style='width:100%;'></input><button type='button' id='button' class='btn btn-primary btn-large' style='margin-top:2%'>Please Click Here For New Question</button></div></div></div></div>");
+            $("#body-card").append("<div class='card-body'><div class='col-md-12'><div class='card' style='background-color:#91BAD6;margin:2%;'><div class='card-body'><label class='form-label;' style='color:white;font-size:30px'>What Type Of Question</label><input placeholder='e.g. Rating,Input,Number' style='width:100%;'></input><label class='form-label;' style='color:white;font-size:30px'>Question</label><input placeholder='Please Type In Question' style='width:100%;'></input></div></div></div></div>");
         });
 
     </script>
