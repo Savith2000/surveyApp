@@ -11,9 +11,6 @@ const SurveyQuestion = new Schema({
     required: "Response type required",
     validate: {
       validator: (type) => ALLOWEDTYPES.includes(type),
-      //  validator: function (x) {
-      //   console.log(x);
-      // },
       message: "Valid types are: text, number, rating",
     },
   },
@@ -21,7 +18,7 @@ const SurveyQuestion = new Schema({
 
 const SurveyResponse = new Schema({
   answers: [Schema.Types.Mixed],
-  date: { type: Date, required: true },
+  date: { type: Date, default: Date.now },
 });
 
 const SurveySchema = new Schema({
@@ -30,7 +27,7 @@ const SurveySchema = new Schema({
     required: true,
     maxLength: 50,
   },
-  creationDate: { type: Date, required: true },
+  creationDate: { type: Date, default: Date.now },
   questions: [SurveyQuestion],
   responses: [SurveyResponse],
 });
