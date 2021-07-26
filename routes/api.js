@@ -1,5 +1,5 @@
-const db = require("../models");
-const { surveyController } = require("../controllers");
+const Survey = require("../models/Survey");
+const surveyController = require("../controllers/surveyController");
 
 module.exports = function (app) {
     app.post("/createSurvey", function(req, res) {
