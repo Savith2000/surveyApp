@@ -7,5 +7,5 @@ module.exports = {
 
   createSurvey: survey => db.create(survey),
 
-  addResponseToSurvey: (surveyId, Response) => db.findByIdAndUpdate(surveyId, { $push: { responses: Response } })
+  addResponseToSurvey: (surveyId, response) => db.findByIdAndUpdate(surveyId, { $push: { responses: response } })
 };
