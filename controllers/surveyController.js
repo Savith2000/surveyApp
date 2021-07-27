@@ -1,6 +1,6 @@
 const db = require("../models");
 
-module.exports = {
+const surveyController = {
   findAllSurveys: () => db.Survey.find({}),
   
   findSurveyById: (id) => db.Survey.findById(id),
@@ -13,7 +13,7 @@ module.exports = {
 
   getResponseListBySurveyId: (id) =>
     db.Survey.findById(id).then((survey) =>
-      this.getResponseListByResponseListId(survey.responses)
+      surveyController.getResponseListByResponseListId(survey.responses)
     ),
 
   getResponseListByResponseListId: (id) =>
@@ -22,7 +22,10 @@ module.exports = {
   addResponseToSurveyBySurveyId: (surveyId, response) => {
     incrementSurveyResponseCounter(surveyId);
     return db.Survey.findById(surveyId).then((survey) =>
-      this.addResponseToSurveyByResponseListId(survey.responses._id, response)
+      surveyController.addResponseToSurveyByResponseListId(
+        survey.responses._id,
+        response
+      )
     );
   },
 
@@ -35,3 +38,5 @@ module.exports = {
   incrementSurveyResponseCounter: (surveyId) =>
     db.Survey.findByIdAndUpdate(surveyId, { $inc: { responseAmount: 1 } }),
 };
+
+module.exports = surveyController;
