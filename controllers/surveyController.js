@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = {
   findAllSurveys: () => db.Survey.find({}),
-
+  
   findSurveyById: (id) => db.Survey.findById(id),
 
   createSurvey: (survey) =>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <nav
+      class="navbar fixed-top navbar-expand-lg navbar-light bg-light"
+      id="divider"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" style="margin-left: 2" href="#">Survey Point</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarNav"
+          style="margin-left: 75%"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Create Your Survey</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="Title">Survey Point</h1>
+      <div class="typewriter" style="margin-left: 20%">
+        <div class="typewriter-text">The Simplest Way To Create A Survey</div>
+      </div>
+        <div class="row" style="margin-top: 15%">
+          <div class="col-md-4">
+            <h3 style="margin-top: 30%" id="caption">
+              Our simple and inovative design creates the simplest and most user
+              friendly experience possible. And the best part is, the whole
+              thing is free!!!!
+            </h3>
+          </div>
+
+          <div class="col-md-8">
+            <img id="image" src="survey.png" />
+          </div>
+        </div>
+
+        <div class="row" style="position: relative;">
+            <div class="col-md-4">
+                <img style="border-radius: 20px; position:relative; bottom: 60%" src="https://via.placeholder.com/350x250">
+            </div>
+
+            <div class="col-md-4">
+                <img style="border-radius: 20px; position:relative; bottom: 60%" src="https://via.placeholder.com/350x250">
+            </div>
+
+            <div class="col-md-4">
+                <img style="border-radius: 20px; position:relative; bottom: 60%" src="https://via.placeholder.com/350x250">
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Convergence&display=swap");
+
+      body {
+        padding-top: 5%;
+      }
+      #caption {
+        font-family: "Convergence", sans-serif;
+        color: #91bad6;
+      }
+      #image {
+        height: 50%;
+        border-radius: 20px;
+        margin-left: 10%;
+      }
+      #Title {
+        color: #91bad6;
+        font-size: 180px;
+        font-family: "Convergence", sans-serif;
+      }
+      .typewriter {
+        font-family: Courier, monospace;
+        display: inline-block;
+        color: #91bad6;
+      }
+
+      .typewriter-text {
+        display: inline-block;
+        overflow: hidden;
+        letter-spacing: 2px;
+        animation: typing 5s steps(30, end), blink 0.75s step-end infinite;
+        white-space: nowrap;
+        font-size: 30px;
+        font-weight: 700;
+        border-right: 4px solid black;
+        box-sizing: border-box;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: black;
+        }
+      }
+    </style>
+  </body>
+</html>
