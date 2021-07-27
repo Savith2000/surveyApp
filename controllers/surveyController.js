@@ -17,7 +17,9 @@ const surveyController = {
     ),
 
   getResponseListByResponseListId: (id) =>
-    db.ResponseList.findById(survey.responses),
+    db.ResponseList.findById(survey.responses).then(
+      (responseList) => responseList.responses
+    ),
 
   addResponseToSurveyBySurveyId: (surveyId, response) => {
     surveyController.incrementSurveyResponseCounter(surveyId);
@@ -32,7 +34,11 @@ const surveyController = {
   // Do not use without calling incrementSurveyResponseCounter!
   addResponseToSurveyByResponseListId: (responseListId, response) =>
     db.ResponseList.findByIdAndUpdate(responseListId, {
-      $push: { responses: response },
+      $push: {
+        responses: {
+          answers: response,
+        },
+      },
     }),
 
   incrementSurveyResponseCounter: (surveyId) =>
