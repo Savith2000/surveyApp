@@ -8,6 +8,10 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../public/createSurvey.html"));
     })
 
+    app.get("/", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/home.html"));
+    })
+
     app.get("/survey/:id", function (req, res) {
         controller.findSurveyById(req.params.id).then((survey) => {
             let questions = "";
