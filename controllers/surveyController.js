@@ -20,7 +20,7 @@ const surveyController = {
     db.ResponseList.findById(survey.responses),
 
   addResponseToSurveyBySurveyId: (surveyId, response) => {
-    incrementSurveyResponseCounter(surveyId);
+    surveyController.incrementSurveyResponseCounter(surveyId);
     return db.Survey.findById(surveyId).then((survey) =>
       surveyController.addResponseToSurveyByResponseListId(
         survey.responses._id,
