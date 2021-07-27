@@ -9,13 +9,12 @@ module.exports = function (app) {
     })
 
     app.get("/survey/:id", function (req, res) {
-        console.log(controller.findSurveyById(req.params.id));
         controller.findSurveyById(req.params.id).then((survey) => {
             let questions = "";
             let metricsH = "<table class='survey-metrics'><thead><tr>";
             survey.questions.forEach((q, i) => {
                 let input;
-                input = `<label for="${i}>${q.question}</label>"`;
+                input = `<br><label for="${i}">${q.question}</label>`;
                 switch (q.responseType) {
                     case "text":
                     input += `<input name="${i}" id="${i}" type="text" placeholder="Enter text only here...">`;
@@ -30,9 +29,11 @@ module.exports = function (app) {
                 questions += input;
                 metricsH += `<th>${q.question}</th>`;
             });
-            metricsH += `</tr></thead><table>`;
+            metricsH += `</tr></thead></table>`;
             let form;
-            fs.readFile("../public/survey.js", "utf8", function(error, js) {
+            const frontendJSPath = path.join(__dirname, "../public/survey.js");
+            fs.readFile(frontendJSPath, "utf8", function(error, file) {
+            // Bug: fs returning undefined (fix later)
             form = `
 <!DOCTYPE html>
 <html lang="en">
@@ -44,34 +45,36 @@ module.exports = function (app) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 class="form-title"></h1>
+    <h1 class="form-title">${survey.title}</h1>
     <form>
     ${questions}
-        <input value="submit" id="submit" data-length="${questions.length}" data-id="${survey._id}">
+        <br><input value="submit" type="submit" id="submit" data-length="${questions.length}" data-id="${survey._id}">
     </form>
     <div id="alerts"></div>
-    <data>
+    <details>
         <summary data-id="${survey._id}">View Survey Response Metrics</summary>
         ${metricsH}
-    </data>
-    ${js}
+    </details>
+    <script>${file}</script>
 </body>
 </html>
             `;
-            });
             res.send(form);
+            });
         });
     });
 
     app.get("/metrics/:id", function (req, res) {
-        controller.findSurveyById(req.params.id).then((survey) => {
-        survey.responses.forEach((response, i) => {
+        controller.getSurveyResponseListById(req.params.id).then((list) => {
+        let metrics = "";
+        list.forEach((response, i) => {
             metrics += `<tr>`;
             response.forEach((answer) => {
                 metrics += `<td>${answer}</td>`;
             });
             metrics += `</tr>`;
         });
-        metrics += `</thead>`;
+        res.send(metrics);
     });
+})
 }

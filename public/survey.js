@@ -1,13 +1,15 @@
-/* Functionality for Individual Survey Pages */
+/* Front End Survey Pages Functionality */
 
-$("#submit").on("click", () => {
+$("#submit").on("click", (e) => {
+    e.preventDefault();
     let responses = [];
-    const qLength = $("#submit").data("length").parseInt();
-    const surveyId = $("#submit").data("id").parseInt();
+    const qLength = $("#submit").data("length");
+    const surveyId = $("#submit").data("id");
     for (i = 0; i < qLength; i++) {
         responses += $(`#${i}`).val();
     }
     $.post(`/submitSurvey/${surveyId}`, responses).then((info) => {
+        console.log(info);
         if (!info.error) {
             $("form").hide();
             $("#alerts").text(info.msg);

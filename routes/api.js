@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.post("/submitSurvey/:id", function(req, res) {
         // Get Corresponding Survey (Will be replaced by finding in db using req.params.id once controllers done):
         controller.findSurveyById(req.params.id).then((survey) => {
-            // Validate Length
+        // Validate Length
         const qs = survey.questions;
         const ans = req.body.responses;
         let valid = true;
@@ -62,7 +62,7 @@ module.exports = function (app) {
             });
         }
         }).catch((err) => {
-            res.json({error: true, msg: err});
+            res.json({error: true, msg: "500: Internal Server Error"});
         })
     });
 }
