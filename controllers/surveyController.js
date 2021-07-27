@@ -2,11 +2,11 @@ const db = require("../models");
 
 const surveyController = {
   findAllSurveys: () => db.Survey.find({}),
-  
+
   findSurveyById: (id) => db.Survey.findById(id),
 
   createSurvey: (survey) =>
-    db.ResponseList.create([]).then((responseList) => {
+    db.ResponseList.create({ responses: [] }).then((responseList) => {
       survey.responses = responseList._id;
       return db.Survey.create(survey);
     }),
@@ -23,7 +23,7 @@ const surveyController = {
     surveyController.incrementSurveyResponseCounter(surveyId);
     return db.Survey.findById(surveyId).then((survey) =>
       surveyController.addResponseToSurveyByResponseListId(
-        survey.responses._id,
+        survey.responses,
         response
       )
     );
