@@ -24,7 +24,7 @@
 
   
 
-                <div class="card" id="questionForm" class="card" id="body-card" style="margin-top: 2%;margin-left: 10%;margin-right: 10%; background-color:#BCD2E8;">
+                <div class="card" id="questionForm" class="card" id="body-card" style="margin-top: 2%;margin-left: 10%;margin-right: 10%; background-color:#BCD2E8;border-radius: 20px;">
                     <div class="card-body" >
                         <div class="row g-2">
                             <button type="button" id="button" class="btn btn-primary btn-large" style="width:80%;margin-top: 2%;margin-left: 10%;">Click Here to Add a Question</button>
@@ -32,9 +32,9 @@
                       
                         
                             <div class="col-md-12" id="appendQs">
-                                <div class="card" style="background-color: #91BAD6 ;margin: 2%;">
+                                <div class="card" style="background-color: #91BAD6 ;margin: 2%;border-radius: 10px;">
                                     <div class="card-body" id="0">
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" aria-label="Default select example" style="border-radius: 10px;">
                                             <option selected>Choose Question Type</option>
                                             <option value="1">Text</option>
                                             <option value="2">Number</option>
@@ -57,7 +57,7 @@
                             </div>
                             </div>
 
-                            <div class="card" id="metaForm" style="margin-top: 2%;margin-left: 10%;margin-right: 10%; background-color:#BCD2E8;">
+                            <div class="card" id="metaForm" style="margin-top: 2%;margin-left: 10%;margin-right: 10%; background-color:#BCD2E8;border-radius: 20px;">
                                 <div class="card-body">
                                     
                                       <form class="row g-3 needs-validation" novalidate>
@@ -111,8 +111,8 @@
     <script type="text/javascript">
     let qLength = 1;
         $("#button").on("click", function(event) {
-            $("#appendQs").append(`<div class="card" style="background-color: #91BAD6 ;margin: 2%;"><div class="card-body" id="${qLength}">
-                                        <select class="form-select" aria-label="Default select example">
+            $("#appendQs").append(`<div class="card" style="background-color: #91BAD6 ;margin: 2%;border-radius:10px"><div class="card-body" id="${qLength}">
+                                        <select class="form-select" aria-label="Default select example" style="border-radius:10px">
                                             <option selected>Choose Question Type</option>
                                             <option value="1">Text</option>
                                             <option value="2">Number</option>
@@ -157,6 +157,7 @@
     </script>
 
     <style>
+
         body{
             background-color:  #91BAD6 ;
         /*background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);*/
@@ -170,6 +171,50 @@
         #button{
             width:max-content;
         }
+
+        .btn {
+            background-color: #91BAD6;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            position: relative;
+            border-radius: 8px !important;
+            border: none;
+            transition:all 0.3s ease 0s;
+        }
+        .btn:hover,
+        .btn.active:hover{
+            color: #ffffff;
+        }
+        .btn:before{
+            content: "";
+            position: absolute;
+            top: -7px;
+            left: 0;
+            background-color:white;
+            width: 30%;
+            height: 4px;
+            transition:all 0.3s ease 0s;
+        }
+        .btn:after{
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            right: 0;
+            background-color:white;
+            width: 30%;
+            height: 4px;
+            transition:all 0.3s ease 0s;
+        }
+        .btn:hover:before,
+        .btn:hover:after,
+        .btn.active:before,
+        .btn.active:after{
+            width: 100%;
+        }
+
+        
     </style>
   </body>
 </html>
