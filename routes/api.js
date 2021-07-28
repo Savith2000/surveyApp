@@ -3,8 +3,8 @@ const controller = require("../controllers/surveyController");
 
 module.exports = function (app) {
     app.post("/createSurvey", function(req, res) {
-        controller.createSurvey(req.body).then(() => {
-            res.json({error: false, msg: "Your survey was successfully submitted! (!! Send link too !!)"});
+        controller.createSurvey(req.body).then((data) => {
+            res.json({error: false, msg: `Your survey was successfully submitted! It can be accessed `, link: data._id});
         }
         ).catch((err) => {
             res.json({error: true, msg: err});
@@ -27,19 +27,22 @@ module.exports = function (app) {
         let ratingRgx = /([^1-5])+/g;
         ans.forEach((a, i) => {
             let resType = qs[i].responseType;
+            if (a.trim() == "") {
+                valid = false;
+            }
             switch (resType) {
                 case "text":
-                if (a.input.match(textRgx)) {
+                if (a.match(textRgx)) {
                     valid = false;
                 }
                 break;
                 case "number":
-                if (a.input.match(numRgx)) {
+                if (a.match(numRgx)) {
                     valid = false;
                 }
                 break;
                 case "rating":
-                if (a.input.match(ratingRgx) || a.input.length !== 1) {
+                if (a.match(ratingRgx) || a.length !== 1) {
                     valid = false;
                 }
                 break;
@@ -51,17 +54,20 @@ module.exports = function (app) {
                 msg: "Please fill out all fields correctly"
             });
         } else {
-            controller.addResponseToSurvey(req.params.id, ans).then(() => {
+            console.log(ans);
+            controller.addResponseToSurveyBySurveyId(req.params.id, ans).then(() => {
                 res.json({error: false, msg: "Your response was successfully submitted!"});
             }
             ).catch((err) => {
+                console.log(err);
                 res.json({
                     error: true, 
-                    msg: err
+                    msg: "There was an error submitting your response to the database"
                 });
             });
         }
         }).catch((err) => {
+            console.log(err);
             res.json({error: true, msg: "500: Internal Server Error"});
         })
     });

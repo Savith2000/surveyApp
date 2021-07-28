@@ -6,9 +6,9 @@ $("#submit").on("click", (e) => {
     const qLength = $("#submit").data("length");
     const surveyId = $("#submit").data("id");
     for (i = 0; i < qLength; i++) {
-        responses += $(`#${i}`).val();
+        responses.push($(`#${i}`).val());
     }
-    $.post(`/submitSurvey/${surveyId}`, responses).then((info) => {
+    $.post(`/submitSurvey/${surveyId}`, {responses: responses}).then((info) => {
         console.log(info);
         if (!info.error) {
             $("form").hide();
@@ -17,6 +17,6 @@ $("#submit").on("click", (e) => {
             $("#alerts").text(info.msg);
         }
     }).fail((err) => {
-        $("#alerts").text(err.statusCode);
+        $("#alerts").text("There was an error submitting your response");
     });
 });
