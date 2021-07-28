@@ -15,7 +15,7 @@ module.exports = function (app) {
     app.get("/survey/:id", function (req, res) {
         controller.findSurveyById(req.params.id).then((survey) => {
             let questions = "";
-            let metricsH = "<table class='survey-metrics' id='surveyMetrics'><thead><tr>";
+            let metricsH = "<table class='survey-metrics'><thead><tr>";
             survey.questions.forEach((q, i) => {
                 let input;
                 input = `<br><label for="${i}">${q.question}</label>`;
@@ -24,7 +24,7 @@ module.exports = function (app) {
                     input += `<input name="${i}" id="${i}" type="text" placeholder="Enter text only here...">`;
                     break;
                     case "number":
-                    input += `<input name="${i}" id="${i}" type="number" placeholder="Enter numbers only here...">`;
+                    input += `<input name="${i}" id="${i}" type="number" placeholder="Numbers only here...">`;
                     break;
                     case "rating":
                     input += `<input name="${i}" id="${i}" type="number" min="1" max="5" value="3">`;
@@ -45,82 +45,14 @@ module.exports = function (app) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${survey.title.trim()} | Survey App</title>
+    <title>${survey.title}</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <style>
-      .form-title{
-        color: #91bad6;
-        font-size: 60px;
-        text-align: center;
-        font-family: "Convergence", sans-serif;
-        margin-top: 2%;
-      }
-
-      #line{
-        width: 80%;
-      }
-
-      input {
-      width: 70%;
-      font-size: 15px;
-      padding: 12px 20px;
-      margin: 15px 15px 15px 15%;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-family: "Convergence", sans-serif;
-      color: #91bad6;
-    }
-
-    input[type=submit] {
-      width: 150px;
-      background-color: #91bad6;
-      color: white;
-      padding: 14px 20px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 20px;
-      margin-top: 30px;
-    }
-
-    input[type=submit]:hover {
-      background-color: #5099c9;
-    }
-    label{
-    margin-top: 20px;
-      font-family: "Convergence", sans-serif;
-      font-size: 30px;
-      color: #5099c9;
-      display: block;
-      margin-left: 15%;
-      margin-right: 15%;
-    }
-
-    .survey-metrics{
-        font-size: 20px;
-        text-align: center;
-        font-family: "Convergence", sans-serif;
-        color: #91bad6;
-        margin: auto;
-        padding: 30px;
-    }
-
-    summary{
-      margin-top: 1%;
-      font-size: 30px;
-      font-family: "Convergence", sans-serif;
-      color: #5099c9
-    }
-    </style>
 </head>
 <body>
     <h1 class="form-title">${survey.title}</h1>
-    <hr id="line">
-    <form style="width: 100%;">
+    <form>
     ${questions}
-        <br><input value="Submit" type="submit" id="submit" data-length="${survey.questions.length}" data-id="${survey._id}">
+        <br><input value="submit" type="submit" id="submit" data-length="${questions.length}" data-id="${survey._id}">
     </form>
     <div id="alerts"></div>
     <details>

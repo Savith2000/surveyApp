@@ -21,6 +21,10 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
+    "fs": "0.0.1-security",
+=======
+>>>>>>> 9b49ea06ab72bf0cc0dc8547f0ebfa36a15d14e6
     "mongoose": "^5.13.3",
     "path": "^0.12.7"
   }

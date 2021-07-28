@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ALLOWEDTYPES = ["text", "number", "rating"];
 
 const SurveyQuestion = new Schema({
-  question: { type: String, required: true, maxLength: 200, match: [/([A-z0-9\s])+/g, "Special characters are not allowed"] },
+  question: { type: String, required: true, maxLength: 200 },
   responseType: {
     type: String,
     required: "Response type required",
@@ -19,7 +19,7 @@ const SurveyQuestion = new Schema({
 const SurveySchema = new Schema({
   title: {
     type: String,
-    match: [/([A-z0-9\s])+/g, "Special characters are not allowed"],
+    match: [/([^A-z0-9\s])+/g, "Special characters are not allowed"],
     required: "Survey title required",
     maxLength: 50,
   },
