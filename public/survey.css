@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+*:focus {
+    outline: none;
+} 
+
+.form-title{
+    color: #003d66;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 5%;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  #line{
+    width: 80%;
+  }
+
+  input {
+  width: 70%;
+  font-size: 14px;
+  padding: 12px 20px;
+  margin: 15px 15px 15px 15%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Convergence", sans-serif;
+  color: #5c5c5c;
+  border-color: #5c5c5c;
+  font-weight: lighter;
+}
+
+input[type=submit] {
+  width: 150px;
+  background-color: #003d66;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 19px;
+  letter-spacing: .5px;
+  margin-top: 23px;
+  transition: all 300ms;
+  font-family: 'Raleway', sans-serif;
+}
+
+input[type=submit]:hover {
+  background-color: #0060a0;
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px 2px rgb(221, 221, 221);
+}
+
+label {
+margin-top: 20px;
+  font-family: "Convergence", sans-serif;
+  font-size: 20px;
+  color: #0060a0;
+  display: block;
+  margin-left: 15%;
+  margin-right: 15%;
+  font-weight: lighter;
+}
+
+summary{
+  margin-top: 1%;
+  font-size: 25px;
+  font-family: "Convergence", sans-serif;
+  color: #5099c9;
+  font-weight: lighter;
+}
+
+#metrics {
+  margin: 3% 15% 3% 15%;
+  overflow: scroll;
+}
+
+table {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  margin-top: 25px;
+  width: fit-content;
+}
+
+td, th {
+  padding: 15px;
+  min-width: 150px;
+  text-align: center;
+  outline: #5099c9 solid 1px;
+  outline-offset: .5px;
+}
+
+th {
+  font-family: "Convergence", sans-serif;
+  color: #5099c9;
+  font-weight: 650;
+}
+
+.note {
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-top: 7px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.alert {
+  color: darkred;
+  margin-top: 5px;
+}
+
+.good {
+  color: darkgreen;
+}

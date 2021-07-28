@@ -22,7 +22,7 @@ module.exports = function (app) {
             valid = false;
         }
         // Validate based on Type
-        let textRgx = /([^A-z0-9\s'-.,])+/g;
+        let textRgx = /([^A-z0-9\s'-.,!?])+/g;
         let numRgx = /([^0-9])+/g;
         let ratingRgx = /([^1-5])+/g;
         ans.forEach((a, i) => {
@@ -51,15 +51,13 @@ module.exports = function (app) {
         if (!valid) {
             res.json({
                 error: true, 
-                msg: "Please fill out all fields correctly"
+                msg: "Please fill out all fields correctly. Special characters are not allowed"
             });
         } else {
-            console.log(ans);
             controller.addResponseToSurveyBySurveyId(req.params.id, ans).then(() => {
                 res.json({error: false, msg: "Your response was successfully submitted!"});
             }
             ).catch((err) => {
-                console.log(err);
                 res.json({
                     error: true, 
                     msg: "There was an error submitting your response to the database"
@@ -67,7 +65,6 @@ module.exports = function (app) {
             });
         }
         }).catch((err) => {
-            console.log(err);
             res.json({error: true, msg: "500: Internal Server Error"});
         })
     });
