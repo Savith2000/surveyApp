@@ -17,7 +17,7 @@ const surveyController = {
     ),
 
   getResponseListByResponseListId: (id) =>
-    db.ResponseList.findById(survey.responses).then(
+    db.ResponseList.findById(id).then(
       (responseList) => responseList.responses
     ),
 
