@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const PORT = process.env.PORT | 3000;
+const PORT = process.env.PORT || 3000;
 const DB_STRING = process.env.DB_STRING;
 
 // Initialize Express
