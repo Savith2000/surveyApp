@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const PORT = process.env.PORT | 3000;
-const DB_STRING = process.env.DB_STRING;
+const DB_STRING = "mongodb+srv://dbUser:PassFourUser@cluster0.5mrjb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority;"
 
 // Initialize Express
 const app = express();
